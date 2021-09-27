@@ -156,8 +156,8 @@ def play_round():
         print(f'\n-----------------\nIt\'s {player_name}\'s turn.')
         display_word()
         [turn_active, round_active] = choose_input('consonant')
-        player_bank = player_list[active_player_index]['bank']
         while turn_active:
+            player_bank = player_list[active_player_index]['bank']
             if len(hidden_vowels) == 0 and len(hidden_consonants) == 0:
                 print('\nGreat guess! That solves the rest of the puzzle.')
                 [turn_active, round_active] = [False, False]
@@ -167,7 +167,6 @@ def play_round():
                 [turn_active, round_active] = choose_input('consonant', 'vowel')
             else:
                 [turn_active, round_active] = choose_input('consonant')
-                print(turn_active)
         player_bank = player_list[active_player_index]['bank']
         print(f'\nThat\'s the end of {player_name}\'s turn. They have ${player_bank} in the bank.')
         active_player_index = (active_player_index + 1) % 3
@@ -214,7 +213,7 @@ def play_final_round():
         hidden_consonants.discard(letter)
     vowel = input('Please choose a vowel to reveal. ')
     while vowel not in ['a', 'i', 'o', 'u']:
-        letter = input('Oops! Please choose a lower-case vowel. You cannot choose E, because it has already been revealed.')
+        vowel = input('Oops! Please choose a lower-case vowel. You cannot choose E, because it has already been revealed.')
     hidden_vowels.discard(vowel)
     display_word()
     print('All right. Now the only thing left to do is guess the phrase. You only get one chance, so be careful!')
